@@ -23,22 +23,26 @@
 </head>
 <body>
   <h1 id="title">他们还活着吗？</h1>
-  <img id="beetleImage" src="alive.jpg" alt="Beetles">
+  <img id="beetleImage" alt="Beetles">
 
   <script>
     const imageElement = document.getElementById("beetleImage");
     const title = document.getElementById("title");
     const LAST_VISIT_KEY = "lastVisitTime";
-    const ONE_WEEK = 10 * 1000;
+    const TEST_DURATION = 10 * 1000; // 10秒测试用
+
     const now = Date.now();
     const lastVisit = localStorage.getItem(LAST_VISIT_KEY);
 
-    if (lastVisit && (now - parseInt(lastVisit) > ONE_WEEK)) {
-      imageElement.src = "dead.jpg";
+    const aliveImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYCAIAAAAxBA+LAAEAAElEQVR4nFT9ze9167IdBo1RNddv77PP8fH1RxzbJCFBhiY0jIQE...";
+    const deadImage  = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYCAAAAACbDccAAAEAAElEQVR4nEz9S8ytW3Ydho0x59r/OffeqrpkFYtviU+JIsVQ1isy...";
+
+    if (lastVisit && (now - parseInt(lastVisit) > TEST_DURATION)) {
+      imageElement.src = deadImage;
       imageElement.alt = "Dead Beetle";
       title.textContent = "他们已经死去了。";
     } else {
-      imageElement.src = "alive.jpg";
+      imageElement.src = aliveImage;
       imageElement.alt = "Alive Beetles";
     }
 
